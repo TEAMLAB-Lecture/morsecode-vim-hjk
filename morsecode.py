@@ -156,12 +156,12 @@ def get_cleaned_english_sentence(raw_english_sentence):
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     punctuation_marks = ['.', ',', '!', '?']
 
-    cleaned_english_sentence = raw_english_sentence
-
     for i in punctuation_marks:
-        cleaned_english_sentence = cleaned_english_sentence.replace(i, '')
+        raw_english_sentence = raw_english_sentence.replace(i, '')
+    
+    #print(raw_english_sentence.strip())
 
-    return cleaned_english_sentence.strip()
+    return raw_english_sentence.strip()
     # ==================================
 
 
@@ -280,8 +280,10 @@ def encoding_sentence(english_sentence):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     encoded_sentence = ''
-    english_sentence = english_sentence.upper()
+    english_sentence = get_cleaned_english_sentence(english_sentence)
+    english_sentence = ' '.join(english_sentence.upper().split())
 
+    
     for i in english_sentence:
         if i == ' ':
             encoded_sentence += ' '
@@ -303,8 +305,7 @@ def main():
             break
         elif is_help_command(input_message):
             print(get_help_message())
-        elif is_validated_english_sentence(input_message):
-            input_message = get_cleaned_english_sentence(input_message)
+        elif is_validated_english_sentence(input_message):            
             print(encoding_sentence(input_message))
         elif is_validated_morse_code(input_message):
             print(decoding_sentence(input_message))
