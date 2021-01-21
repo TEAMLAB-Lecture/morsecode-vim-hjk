@@ -284,8 +284,10 @@ def encoding_sentence(english_sentence):
 
     for i in english_sentence:
         if i != ' ':
+            encoded_sentence += ' '
+            continue
+        else:
             encoded_sentence += encoding_character(i)
-            
         encoded_sentence += ' '
 
     return encoded_sentence.strip()
