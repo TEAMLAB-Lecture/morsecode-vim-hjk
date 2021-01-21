@@ -283,10 +283,9 @@ def encoding_sentence(english_sentence):
     english_sentence = ' '.join(english_sentence.upper().split())
 
     for i in english_sentence:
-        if i == ' ':
-            encoded_sentence += ' '
-        else:
+        if i != ' ':
             encoded_sentence += encoding_character(i)
+            
         encoded_sentence += ' '
 
     return encoded_sentence.strip()
