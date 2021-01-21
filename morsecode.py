@@ -288,7 +288,7 @@ def encoding_sentence(english_sentence):
         if i == ' ':
             encoded_sentence += ' '
             continue
-        elif i.isalpha():
+        else:
             encoded_sentence += encoding_character(i)
         encoded_sentence += ' '
 
